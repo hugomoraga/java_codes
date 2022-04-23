@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class IniciarSesion
+ * Servlet implementation class CerrarSession
  */
-@WebServlet("/IniciarSesion")
-public class IniciarSesion extends HttpServlet {
+@WebServlet("/CerrarSession")
+public class CerrarSession extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IniciarSesion() {
+    public CerrarSession() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,38 +28,12 @@ public class IniciarSesion extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("deprecation")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	     PrintWriter out = response.getWriter();
-
-		 String name = request.getParameter("userName");
-	     String password = request.getParameter("userPassword");
-	     	     
-	     out.print("Bienvenido " + name);
-	     
-	     HttpSession session = request.getSession();
-	     session.setAttribute("session_name",name );
-	     session.setAttribute("session_password", password);
-	     // session.setMaxInactiveInterval(10);
-	
-	    out.print(session.getId());
-	    out.print("\n");
-	    out.print(session.getAttribute("session_password"));
-	    
-	    if (session.getAttribute("session_password").equals("supersecreto")) {
-		    out.print("Entraste a la seccion secreta");
-		    out.print("\n");
-		    
-		    response.sendRedirect("/formulario/micuenta.jsp");
-
-	    } else {
-		    out.print("No sabes entrar");
-		    out.print("\n");
-
-	    }
-	    		
-		
+		HttpSession session = request.getSession();
+		PrintWriter out = response.getWriter();
+		out.print("Cerrando Sesion");
+		session.invalidate();
 	}
 
 	/**

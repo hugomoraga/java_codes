@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Primer
@@ -42,6 +43,16 @@ public class Primer extends HttpServlet {
 		out.print("Hola Mundo");
 		out.print("Bienvenido :" + nombre);
 		System.out.println("Aqui Estamos Probando el metodo get");
+		HttpSession session = request.getSession();	
+		out.print("\n");
+
+		out.print(session.getId());
+	    out.print("\n");
+		 
+		out.print(session.getAttribute("session_password"));
+		
+
+
 	}
 
 	/**
